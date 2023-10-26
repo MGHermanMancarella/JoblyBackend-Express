@@ -27,7 +27,8 @@
     "jsonschema": "*",
     "jsonwebtoken": "*",
     "morgan": "*",
-    "pg": "*"
+    "pg": "*",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "supertest": "^6.1.3"
