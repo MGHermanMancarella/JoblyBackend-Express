@@ -1,9 +1,10 @@
 "use strict";
 
 /** Express app for jobly. */
-
+const serverless = require('serverless-http');
 const express = require("express");
 const cors = require("cors");
+const extractRequestBody = require('./middleware/extractBody')
 
 const { NotFoundError } = require("./expressError");
 
@@ -18,9 +19,11 @@ const morgan = require("morgan");
 const app = express();
 
 app.use(cors());
-app.use(express.json());
 app.use(morgan("tiny"));
 app.use(authenticateJWT);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(extractRequestBody)
 
 app.use("/auth", authRoutes);
 app.use("/companies", companiesRoutes);
@@ -44,4 +47,4 @@ app.use(function (err, req, res, next) {
   });
 });
 
-module.exports = app;
+module.exports.handler = serverless(app);

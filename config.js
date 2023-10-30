@@ -13,7 +13,7 @@ const PORT = +process.env.PORT || 3001;
 function getDatabaseUri() {
   return (process.env.NODE_ENV === "test")
       ? process.env.DATABASE_URL_TEST
-      : process.env.DATABASE_URL || "postgresql:///jobly";
+      : process.env.DATABASE_URL || "postgresql://michael:@localhost/jobly";
 }
 
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
@@ -21,12 +21,12 @@ function getDatabaseUri() {
 // WJB: Evaluate in 2021 if this should be increased to 13 for non-test use
 const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;
 
-console.log("Jobly Config:".green);
-console.log("SECRET_KEY:".yellow, SECRET_KEY);
-console.log("PORT:".yellow, PORT.toString());
-console.log("BCRYPT_WORK_FACTOR".yellow, BCRYPT_WORK_FACTOR);
-console.log("Database:".yellow, getDatabaseUri());
-console.log("---");
+// console.log("Jobly Config:".green);
+// console.log("SECRET_KEY:".yellow, SECRET_KEY);
+// console.log("PORT:".yellow, PORT.toString());
+// console.log("BCRYPT_WORK_FACTOR".yellow, BCRYPT_WORK_FACTOR);
+// console.log("Database:".yellow, getDatabaseUri());
+// console.log("---");
 
 module.exports = {
   SECRET_KEY,
